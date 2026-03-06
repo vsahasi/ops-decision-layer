@@ -129,6 +129,48 @@ The core data primitive. Every feature populates or queries these fields.
 
 ---
 
+## Local Development
+
+**Prerequisites:** Python 3.12+, Node 20+, Docker
+
+```bash
+# Clone
+git clone https://github.com/vsahasi/ops-decision-layer.git
+cd ops-decision-layer
+
+# Start Postgres + pgvector
+docker compose up db
+
+# Backend
+cd backend
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env   # add your ANTHROPIC_API_KEY + SLACK_BOT_TOKEN
+uvicorn src.api.main:app --reload
+# → API at http://localhost:8000
+# → Interactive docs at http://localhost:8000/docs
+
+# Frontend (separate terminal)
+cd frontend
+npm install
+npm run dev
+# → UI at http://localhost:3000
+```
+
+Or run everything with Docker:
+```bash
+cp backend/.env.example backend/.env  # fill in keys first
+docker compose up
+```
+
+---
+
+## Architecture
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for stack decisions, data flow, and design rationale.
+
+---
+
 ## Contributing
 
 Not open for external contributions yet. Reach out directly if you want to be a design partner.
