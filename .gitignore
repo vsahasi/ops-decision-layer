@@ -1,0 +1,41 @@
+# Internal strategy docs — keep off public repo
+MASTER_PLAN.md
+NOTES.md
+INVESTORS.md
+COMPETITIVE.md
+FINANCIALS.md
+OUTREACH.md
+
+# Private docs folder (anything in /private/ stays local)
+private/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data / exports (never commit real customer data)
+data/raw/
+data/exports/
+*.csv
+*.jsonl
