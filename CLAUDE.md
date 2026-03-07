@@ -77,6 +77,30 @@ Phase 1 — design partner sprint. Priority order:
 
 ---
 
+## Team & Work Split
+
+Two engineers. Split by layer — do not cross into the other person's domain without coordinating.
+
+| Owner | Domain | Key files |
+|---|---|---|
+| Engineer 1 | Backend — ingestion, extraction pipeline, API, DB | `backend/` |
+| Engineer 2 | Frontend — annotation UI, decision repository, dashboards | `frontend/` |
+
+**The interface between the two sides is the REST API.** The contract to never change unilaterally:
+- `GET /decisions/` — list decisions (with filters)
+- `GET /decisions/{id}` — fetch single decision
+- `PATCH /decisions/{id}` — annotation UI writes corrections here
+- `POST /ingest/slack` — trigger ingestion run
+
+If you need to change a field shape on `PATCH /decisions/{id}`, coordinate with both sides first. Everything else is yours to own independently.
+
+**Branch strategy:**
+- `main` — always deployable
+- Feature branches off main: `feat/<short-description>`
+- No direct pushes to main — open a PR, get a review from the other engineer
+
+---
+
 ## Workflow Orchestration
 
 ### 1. Plan Node Default
